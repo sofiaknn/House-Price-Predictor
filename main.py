@@ -14,8 +14,8 @@ st.write("""
 """)
 
 # Reading data to dataframes.
-data = pd.read_csv("cleaned_data.csv")
-alldata = pd.read_csv("all_data.csv")
+data = pd.read_csv("df.csv")
+alldata = pd.read_csv("ad.csv")
 df = alldata[0:0]
 df = df.drop(['Hinta'], axis=1)
 
@@ -25,6 +25,7 @@ y = st.sidebar.text_input("Rakennusvuosi", 0)
 
 c_list = data['Kaupunginosa'].tolist()
 options_city = list(dict.fromkeys(c_list))
+options_city = sorted(options_city)
 area_name = st.sidebar.selectbox("Kaupunginosa", options_city)
 
 t_list = data['Tyyppi'].tolist()
@@ -65,7 +66,7 @@ best2 = Tuned_Model2.best_estimator_
 y_pred = Tuned_Model2.predict(df)
 hinta = int(y_pred)
 hinta = str(hinta)
-s = 'Neliöitä: ' + s + 'm^2' + ', Rakennusvuosi: ' + y + ', Kaupunginosa: ' + area_name + ', Asunnon tyyppi: ' + type_name
+
 
 
 h_ylaraja = int(hinta)*1.1
